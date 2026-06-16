@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "main": "src/index.tsx",
-  "module": "src/index.tsx",
+  "main": "src/index.jsx",
+  "module": "src/index.jsx",
   "scripts": {
-    "dev": "bun --hot src/index.tsx",
-    "start": "NODE_ENV=production bun src/index.tsx",
-    "build": "bun run build.ts"
+    "dev": "bun --hot src/index.jsx",
+    "start": "NODE_ENV=production bun src/index.jsx",
+    "build": "bun run build.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.0",
