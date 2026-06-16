@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ROLE {
+  CUSTOMER
+  AGENT
+  ADMIN
+}
+
+enum ORDER_STATUS {
+  PENDING
+  ASSIGNED
+  ACCEPTED
+  PICKED_UP
+  OUT_FOR_DELIVERY
+  DELIVERED
+  CANCELLED
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+
+  role      ROLE
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  customerOrders Order[] @relation("CustomerOrders")
+  assignedOrders Order[] @relation("AgentOrders")
+}
+
+model Order {
+  id              String      @id @default(uuid())
+  orderNumber     String      @unique
+  customer        User        @relation("CustomerOrders", fields: [customerId], references: [id])
+  customerId      String
+  agent           User?       @relation("AgentOrders", fields: [agentId], references: [id])
+  agentId          String?
+
+  pickupAddress   String
+  dropAddress     String
+
+  status          ORDER_STATUS @default(PENDING)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  tracking        Tracking?
+}
+
+model Tracking {
+  id              String        @id @default(uuid())
+
+  trackingCode      String      @unique
+
+  order             Order           @relation(fields: [orderId], references: [id])
+
+  orderId           String       @unique
+
+  startedAt        DateTime?
+  endedAt        DateTime?
+
+  createdAt       DateTime @default(now())
+}
