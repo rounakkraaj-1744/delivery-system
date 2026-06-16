@@ -26,6 +26,9 @@ enum ORDER_STATUS {
 model User {
   id        String   @id @default(uuid())
   username  String   @unique
+  email     String?  @unique
+  phone     String?  @unique
+  password  String?
 
   role      ROLE
 
@@ -35,6 +38,15 @@ model User {
 
   customerOrders Order[] @relation("CustomerOrders")
   assignedOrders Order[] @relation("AgentOrders")
+  sessions       Session[]
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  expiresAt DateTime
+  createdAt DateTime @default(now())
 }
 
 model Order {

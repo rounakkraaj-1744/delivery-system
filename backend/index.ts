@@ -3,15 +3,19 @@ import dotenv from "dotenv"
 import cors from "cors"
 import { router as userRoutes } from "./src/user-service/user.route.ts"
 import { router as orderRoutes } from "./src/order-service/order.route.ts"
+import { router as authRoutes } from "./src/auth-service/auth.route.ts"
+import cookieParser from "cookie-parser"
 
 dotenv.config()
 
 const app = express()
 
-app.use (cors())
-app.use (express.json())
-app.use (userRoutes)
-app.use (orderRoutes)
+app.use(cors({ origin: 'http://localhost:5173', credentials: true }))
+app.use(express.json())
+app.use(cookieParser())
+app.use(authRoutes)
+app.use(userRoutes)
+app.use(orderRoutes)
 
 const port = process.env.PORT || 8080;
 

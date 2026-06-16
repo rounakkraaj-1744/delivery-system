@@ -114,10 +114,9 @@ export const ActiveDelivery = () => {
             <MapController center={agentLocation} />
           </MapContainer>
 
-          {/* Back button overlay */}
           <button 
             onClick={() => navigate('/agent/home')}
-            className="absolute top-4 left-4 z-[400] w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-neutral-600"
+            className="absolute top-4 left-4 z-400 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-neutral-600"
           >
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -125,7 +124,6 @@ export const ActiveDelivery = () => {
           </button>
         </div>
 
-        {/* Bottom Half: Sliding Panel */}
         <div className="flex-1 bg-white rounded-t-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.1)] relative z-10 -mt-6 p-6 flex flex-col">
           <div className="w-12 h-1.5 bg-neutral-200 rounded-full mx-auto mb-6"></div>
           

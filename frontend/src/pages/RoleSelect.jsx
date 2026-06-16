@@ -21,7 +21,7 @@ export default function RoleSelect() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 page-transition" style={{ animationDelay: '100ms' }}>
-          <div onClick={() => navigate('/admin/dashboard')} className="group cursor-pointer bg-white p-8 rounded-2xl shadow-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-neutral-100 relative overflow-hidden">
+          <div onClick={() => navigate('/admin/login')} className="group cursor-pointer bg-white p-8 rounded-2xl shadow-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-neutral-100 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110" />
             <div className="h-14 w-14 bg-primary text-white rounded-xl flex items-center justify-center mb-6 shadow-sm">
               <Package size={28} />

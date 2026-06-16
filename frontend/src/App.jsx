@@ -5,6 +5,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import { SocketProvider } from './context/SocketContext';
 
 import { AdminLayout } from './components/admin/AdminLayout';
+import { AdminLogin } from './pages/admin/AdminLogin';
 import { Dashboard } from './pages/admin/Dashboard';
 import { Orders } from './pages/admin/Orders';
 import { LiveMap } from './pages/admin/LiveMap';
@@ -30,7 +31,7 @@ const AdminRoute = ({ children }) => {
     // I will build a tiny login screen or auto-redirect. For now, let's just render children if they are admin.
     // Actually, I'll redirect them to root if not auth, but I'll make a quick AdminLogin component later if needed.
     // Let's just bypass auth for Admin to make the demo smoother, or enforce it properly.
-    return <Navigate to="/" />;
+    return <Navigate to="/admin/login" />;
   }
   return children;
 };
@@ -61,14 +62,15 @@ export default function App() {
             {/* Root */}
             <Route path="/" element={<RoleSelect />} />
 
-            {/* Admin Portal (Temporary bypass auth for layout building) */}
-            <Route path="/admin" element={<AdminLayout><Dashboard /></AdminLayout>} />
-            <Route path="/admin/dashboard" element={<AdminLayout><Dashboard /></AdminLayout>} />
-            <Route path="/admin/orders" element={<AdminLayout><Orders /></AdminLayout>} />
-            <Route path="/admin/livemap" element={<AdminLayout><LiveMap /></AdminLayout>} />
-            <Route path="/admin/agents" element={<AdminLayout><Agents /></AdminLayout>} />
-            <Route path="/admin/analytics" element={<AdminLayout><Analytics /></AdminLayout>} />
-            <Route path="/admin/settings" element={<AdminLayout><Settings /></AdminLayout>} />
+            {/* Admin Portal */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={<AdminRoute><AdminLayout><Dashboard /></AdminLayout></AdminRoute>} />
+            <Route path="/admin/dashboard" element={<AdminRoute><AdminLayout><Dashboard /></AdminLayout></AdminRoute>} />
+            <Route path="/admin/orders" element={<AdminRoute><AdminLayout><Orders /></AdminLayout></AdminRoute>} />
+            <Route path="/admin/livemap" element={<AdminRoute><AdminLayout><LiveMap /></AdminLayout></AdminRoute>} />
+            <Route path="/admin/agents" element={<AdminRoute><AdminLayout><Agents /></AdminLayout></AdminRoute>} />
+            <Route path="/admin/analytics" element={<AdminRoute><AdminLayout><Analytics /></AdminLayout></AdminRoute>} />
+            <Route path="/admin/settings" element={<AdminRoute><AdminLayout><Settings /></AdminLayout></AdminRoute>} />
 
             {/* Agent Portal */}
             <Route path="/agent/login" element={<AgentLogin />} />

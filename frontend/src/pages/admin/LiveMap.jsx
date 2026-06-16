@@ -73,7 +73,7 @@ export const LiveMap = () => {
   return (
     <div className="relative h-full w-full bg-neutral-100 flex overflow-hidden">
       
-      <div className="absolute top-4 left-4 bottom-4 w-80 bg-white rounded-2xl shadow-xl z-[400] flex flex-col overflow-hidden border border-neutral-100 slide-in-right" style={{ animationName: 'slideInLeft' }}>
+      <div className="absolute top-4 left-4 bottom-4 w-80 bg-white rounded-2xl shadow-xl z-400 flex flex-col overflow-hidden border border-neutral-100 slide-in-right" style={{ animationName: 'slideInLeft' }}>
         <div className="p-4 border-b border-neutral-100 bg-neutral-50 shrink-0">
           <div className="relative mb-4">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" size={16} />

@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { Button } from '../common/Button';
 import { Truck, Smartphone, KeyRound } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { api } from '../../lib/axios';
 
 export const AgentLogin = () => {
   const [step, setStep] = useState('phone');
@@ -14,16 +15,20 @@ export const AgentLogin = () => {
   const { loginAgent } = useAuth();
   const navigate = useNavigate();
 
-  const handleSendOtp = (e) => {
+  const handleSendOtp = async (e) => {
     e.preventDefault();
     if (phone.length < 10) return toast.error('Please enter a valid phone number');
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      await api.post('/auth/agent/send-otp', { phone });
       setStep('otp');
       setOtp('1234'); // Mock auto-fill
       toast.success('OTP sent successfully');
-    }, 800);
+    } catch (error) {
+      toast.error('Failed to send OTP');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleLogin = async (e) => {

@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, Marker, Polyline, useMap } from 'react-leaflet
 import L from 'leaflet';
 import { MOCK_ORDERS } from '../../mock/orders';
 import { MOCK_AGENTS } from '../../mock/agents';
-import { Package, Truck, Phone, CheckCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { Truck, Phone, ChevronDown, ChevronUp } from 'lucide-react';
 import { format } from 'date-fns';
 
 const agentIcon = L.divIcon({
@@ -130,9 +130,8 @@ export const TrackOrder = () => {
             <MapController center={order.status === 'In Transit' ? agentLocation : [order.drop.lat, order.drop.lng]} />
           </MapContainer>
 
-          {/* ETA Chip */}
           {order.status === 'In Transit' && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-[400] bg-white px-4 py-2 rounded-full shadow-lg border border-neutral-100 font-bold text-neutral-900 flex items-center gap-2">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-400 bg-white px-4 py-2 rounded-full shadow-lg border border-neutral-100 font-bold text-neutral-900 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
               Arriving in ~{eta} min
             </div>
@@ -141,7 +140,6 @@ export const TrackOrder = () => {
 
         <div className="flex-1 overflow-y-auto bg-neutral-50 relative z-10 -mt-4 rounded-t-3xl pt-2">
           
-          {/* Agent Card */}
           {agent && (order.status === 'In Transit' || order.status === 'Assigned') && (
             <div className="mx-4 mt-4 bg-white p-4 rounded-2xl shadow-sm border border-neutral-100 flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -161,7 +159,6 @@ export const TrackOrder = () => {
             </div>
           )}
 
-          {/* Timeline */}
           <div className="m-4 bg-white p-6 rounded-2xl shadow-sm border border-neutral-100">
             <h3 className="font-bold text-neutral-900 mb-6">Delivery Updates</h3>
             <div className="relative pl-6 space-y-6">

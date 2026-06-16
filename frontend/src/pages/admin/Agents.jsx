@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MOCK_AGENTS } from '../../mock/agents';
-import { Badge } from '../common/Badge';
+import { Badge } from '../../components/common/Badge';
 import { Avatar } from '../common/Avatar';
 import { Search, MoreVertical, Plus } from 'lucide-react';
 import { AreaChart, Area, BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
